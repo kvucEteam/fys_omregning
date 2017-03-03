@@ -1,0 +1,21 @@
+.inputfield {
+    clear: both;
+}
+
+.input_show {
+    width: 120px;
+    height: 50px;
+    border-radius: 8px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 12px;
+    
+}
+.question{
+    float:left;
+}
+
+.inputcontainer{
+    clear: both;
+}

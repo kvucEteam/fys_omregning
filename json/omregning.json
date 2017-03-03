@@ -1,0 +1,207 @@
+[{
+    "storrelse": "Længde",
+    "enheder": {
+        "abb": ["mm", "cm", "m", "km"],
+        "txt": ["millimeter", "centimeter", "meter", "kilometer"]
+    },
+    "kombinationer": [{
+        "kombo": ["cm", "mm"],
+        "faktor": 10,
+        "reversible": true
+    }, {
+        "kombo": ["m", "mm"],
+        "faktor": 1000,
+        "reversible": true
+    }, {
+        "kombo": ["km", "mm"],
+        "faktor": 1000000,
+        "reversible": true
+    }, {
+        "kombo": ["m", "cm"],
+        "faktor": 100,
+        "reversible": true
+    }, {
+        "kombo": ["km", "cm"],
+        "faktor": 100000,
+        "reversible": true
+    }, {
+        "kombo": ["km", "m"],
+        "faktor": 1000,
+        "reversible": true
+    }]
+}, {
+    "storrelse": "Tid",
+    "enheder": {
+        "abb": ["sekunder", "minutter", "timer", "døgn", "år"],
+        "txt": ["sekunder", "minutter", "timer", "døgn", "år"]
+    },
+    "kombinationer": [{
+        "kombo": ["år", "døgn"],
+        "faktor": 365,
+        "reversible": false
+    }, {
+        "kombo": ["år", "timer"],
+        "faktor": 8760,
+        "reversible": false
+    }, {
+        "kombo": ["år", "minutter"],
+        "faktor": 525600,
+        "reversible": false
+    }, {
+        "kombo": ["år", "sekunder"],
+        "faktor": 31536000,
+        "reversible": false
+    }, {
+        "kombo": ["døgn", "timer"],
+        "faktor": 24,
+        "reversible": false
+    }, {
+        "kombo": ["døgn", "minutter"],
+        "faktor": 1440,
+        "reversible": false
+    }, {
+        "kombo": ["døgn", "sekunder"],
+        "faktor": 86400,
+        "reversible": false
+    }, {
+        "kombo": ["timer", "minutter"],
+        "faktor": 60,
+        "reversible": false
+    }, {
+        "kombo": ["timer", "sekunder"],
+        "faktor": 3600,
+        "reversible": false
+    }, {
+        "kombo": ["minutter", "sekunder"],
+        "faktor": 60,
+        "reversible": false
+    }]
+
+
+}, {
+    "storrelse": "Masse",
+    "enheder": {
+        "abb": ["mg", "g", "kg"],
+        "txt": ["milligram", "gram", "kilogram"]
+    },
+    "kombinationer": [{
+        "kombo": ["g", "mg"],
+        "faktor": 1000,
+        "reversible": true
+    }, {
+        "kombo": ["kg", "mg"],
+        "faktor": 1000000,
+        "reversible": true
+    }, {
+        "kombo": ["kg", "g"],
+        "faktor": 1000,
+        "reversible": true
+    }]
+
+
+}, {
+    "storrelse": "Hastighed",
+    "enheder": {
+        "abb": ["m/s", "km/time"],
+        "txt": ["meter pr. sekund", "kilometer pr. time"]
+    },
+    "kombinationer": [{
+        "kombo": ["km/time", "m/s"],
+        "faktor": 3.6,
+        "reversible": false
+    }]
+
+
+}, {
+    "storrelse": "Densitet",
+    "enheder": {
+        "abb": ["g/mL", "g/cm<sup>3</sup>", "kg/L", "kg/m<sup>3</sup>"],
+        "txt": ["gram pr. milliliter", "gram pr. kubikcentimeter", "kilogram pr. liter", "kilogram pr. kubikmeter"]
+    },
+    "kombinationer": [{
+        "kombo": ["g/mL", "g/cm<sup>3</sup>"],
+        "faktor": 1,
+        "reversible": true
+    }, {
+        "kombo": ["g/mL", "kg/L"],
+        "faktor": 1,
+        "reversible": true
+    }, {
+        "kombo": ["g/mL", "kg/m<sup>3</sup>"],
+        "faktor": 1000,
+        "reversible": true
+    }, {
+        "kombo": ["g/cm<sup>3</sup>", "kg/L"],
+        "faktor": 1,
+        "reversible": true
+    }, {
+        "kombo": ["g/cm<sup>3</sup>", "kg/m<sup>3</sup>"],
+        "faktor": 1000,
+        "reversible": true
+    }, {
+        "kombo": ["kg/L", "kg/m<sup>3</sup>"],
+        "faktor": 1000,
+        "reversible": true
+    }]
+
+
+}, {
+    "storrelse": "Energi",
+    "enheder": {
+        "abb": ["J", "kJ", "MJ"],
+        "txt": ["Joule", "kiloJoule", "megajoule"]
+    },
+    "kombinationer": [{
+        "kombo": ["kJ", "J"],
+        "faktor": 1000,
+        "reversible": true
+    }, {
+        "kombo": ["MJ", "J"],
+        "faktor": 1000000,
+        "reversible": true
+    }, {
+        "kombo": ["MJ", "kJ"],
+        "faktor": 1000,
+        "reversible": true
+    }]
+}, {
+    "storrelse": "Effekt",
+    "enheder": {
+        "abb": ["mW", "kW", "W"],
+        "txt": ["milliwatt", "kilowatt", "Watt"]
+    },
+    "kombinationer": [{
+        "kombo": ["kW", "mW"],
+        "faktor": 1000000,
+        "reversible": true
+    }, {
+        "kombo": ["kW", "W"],
+        "faktor": 1000,
+        "reversible": true
+    }, {
+        "kombo": ["W", "kW"],
+        "faktor": 1000,
+        "reversible": true
+    }]
+}, {
+    "storrelse": "Frekvens",
+    "enheder": {
+        "abb": ["MHz", "kHz", "Hz"],
+        "txt": ["milliwatt", "kilowatt", "Watt"]
+    },
+    "kombinationer": [{
+        "kombo": ["MHz", "kHz"],
+        "faktor": 1000,
+        "reversible": true
+    }, {
+        "kombo": ["MHz", "Hz"],
+        "faktor": 1000,
+        "reversible": true
+    }, {
+        "kombo": ["W", "kW"],
+        "faktor": 1000,
+        "reversible": true
+    }]
+
+
+}]
