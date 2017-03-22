@@ -106,7 +106,7 @@
         "txt": ["meter pr. sekund", "kilometer pr. time"]
     },
     "kombinationer": [{
-        "kombo": ["km/time", "m/s"],
+        "kombo": ["m/s", "km/time"],
         "faktor": 3.6,
         "reversible": false
     }]
@@ -148,8 +148,8 @@
 }, {
     "storrelse": "Energi",
     "enheder": {
-        "abb": ["J", "kJ", "MJ"],
-        "txt": ["Joule", "kiloJoule", "megajoule"]
+        "abb": ["J", "kJ", "MJ", "kWh"],
+        "txt": ["Joule", "kiloJoule", "megajoule", "kilowattimer"]
     },
     "kombinationer": [{
         "kombo": ["kJ", "J"],
@@ -163,6 +163,14 @@
         "kombo": ["MJ", "kJ"],
         "faktor": 1000,
         "reversible": true
+    }, {
+        "kombo": ["kWh", "J"],
+        "faktor": 3600000,
+        "reversible": false
+    }, {
+        "kombo": ["kWh", "kJ"],
+        "faktor": 3600,
+        "reversible": false
     }]
 }, {
     "storrelse": "Effekt",
@@ -178,16 +186,12 @@
         "kombo": ["kW", "W"],
         "faktor": 1000,
         "reversible": true
-    }, {
-        "kombo": ["W", "kW"],
-        "faktor": 1000,
-        "reversible": true
     }]
 }, {
     "storrelse": "Frekvens",
     "enheder": {
         "abb": ["MHz", "kHz", "Hz"],
-        "txt": ["milliwatt", "kilowatt", "Watt"]
+        "txt": ["megahertz", "kilohertz", "Hertz"]
     },
     "kombinationer": [{
         "kombo": ["MHz", "kHz"],
@@ -195,11 +199,7 @@
         "reversible": true
     }, {
         "kombo": ["MHz", "Hz"],
-        "faktor": 1000,
-        "reversible": true
-    }, {
-        "kombo": ["W", "kW"],
-        "faktor": 1000,
+        "faktor": 1000000,
         "reversible": true
     }]
 

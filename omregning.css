@@ -1,5 +1,6 @@
 .inputfield {
     clear: both;
+    text-align: right;
 }
 
 .input_show {
@@ -10,12 +11,61 @@
     margin-top: 10px;
     margin-left: 20px;
     padding: 12px;
-    
-}
-.question{
-    float:left;
 }
 
-.inputcontainer{
+.question {
+    float: left;
+}
+
+.inputcontainer {
     clear: both;
+
+}
+
+.select_container {
+    background-color: #fff;
+    min-height: 30px;
+}
+
+input[type=checkbox] {
+    /* Double-sized Checkboxes */
+    padding: 20px;
+}
+
+
+/* Might want to wrap a span around your checkbox text */
+
+.checkbox_txt {
+    /* Checkbox text */
+    font-size: 100%;
+    margin-left: 5px;
+    padding-top: 0px;
+}
+
+.toggle_btn {
+    font-size: 18px;
+}
+
+.valg_txt {
+    margin-left: 10px;
+}
+
+.checkboxes_str {
+    margin-right: 50px;
+    cursor: pointer;
+}
+
+.input_p {
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    font-weight: 100;
+}
+
+.toggle_btn{
+    cursor: pointer;
+}
+
+.toggleglyph{
+        padding: 10px 0px 14px 0px;
 }
