@@ -47,14 +47,15 @@ $(document).ready(function() {
 
 
     //$(".cb_container").slideToggle();
-    $(".cb_container").slideToggle(0);
+    //$(".cb_container").slideToggle(0);
 
     poseQuestion();
 
 });
 
 function build_select_container() {
-    var HTML = "<div class='toggle_btn'><span class='toggleglyph glyphicon glyphicon-chevron-down'></span><span class='valg_txt'>Klik for at vælge hvilke fysiske størrelser du vil træne</span></div>";
+    var HTML = "<h4>Vælg hvilke fysiske størrelser du vil træne:</h4>";
+    //var HTML = "<div class='toggle_btn'><span class='toggleglyph glyphicon glyphicon-chevron-down'></span><span class='valg_txt'>Klik for at vælge hvilke fysiske størrelser du vil træne</span></div>";
     HTML += "<div class='cb_container'>";
     for (var i = 0; i < jsonData.length; i++) {
 
