@@ -131,6 +131,8 @@ function poseQuestion() {
         randomvalue = Math.floor(Math.random() * 1000) / 10;
     }
 
+    randomvalue = 63.1
+
 
     //scope: 0.01 -> 100 
 
@@ -200,7 +202,7 @@ function poseQuestion() {
 
 
     var antal_decimaler = countDecimals(korrektsvar);
-    if (antal_decimaler > 8) {
+    if (antal_decimaler > 7) {
         console.log("KØRER IGEN");
         poseQuestion();
     }
