@@ -131,7 +131,7 @@ function poseQuestion() {
         randomvalue = Math.floor(Math.random() * 1000) / 10;
     }
 
-    randomvalue = 63.1
+    //randomvalue = 63.1
 
 
     //scope: 0.01 -> 100 
