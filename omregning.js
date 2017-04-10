@@ -10,6 +10,8 @@ var korrektfeed = ["Rigtigt svaret", "Savret er korrekt", "Flot, svaret er rigti
 
 $(document).ready(function() {
 
+    $(".next_info").fadeOut(0);
+
 
     $('#instruction').prepend(instruction("Omregn størrelsen fra den ene enhed til den anden. Skriv den rigtige værdi i tekstfeltet."));
     $('#explanation').prepend(explanation("Formålet med denne øvelse er at lære dig at omregne mellem forskellige enheder for den samme fysiske størrelse. Denne type omregninger har man hele tiden brug for i fysikfaget."));
@@ -41,8 +43,8 @@ $(document).ready(function() {
         poseQuestion();
     });
 
-  $('.inputfield').on('input',function(e){
-     $(".microhint").remove()
+    $('.inputfield').on('input', function(e) {
+        $(".microhint").remove()
     });
 
 
@@ -54,7 +56,7 @@ $(document).ready(function() {
 });
 
 function build_select_container() {
-    var HTML = "<h4>Vælg hvilke fysiske størrelser du vil træne:</h4>";
+    var HTML = "";
     //var HTML = "<div class='toggle_btn'><span class='toggleglyph glyphicon glyphicon-chevron-down'></span><span class='valg_txt'>Klik for at vælge hvilke fysiske størrelser du vil træne</span></div>";
     HTML += "<div class='cb_container'>";
     for (var i = 0; i < jsonData.length; i++) {
@@ -89,6 +91,8 @@ function update_checkboxes() {
 
 function poseQuestion() {
 
+    $(".next_info").fadeOut(200);
+    
     $(".microhint").remove();
     $(".question, .inputcontainer").fadeOut(0);
 
@@ -220,6 +224,7 @@ function tjek_svar() {
             microhint($(".inputfield"), "<p>" + korrektfeed[Math.floor(Math.random() * korrektfeed.length)] + "</p>", "#2ABB2A");
 
             $(".btn-tjek").html("Næste");
+            $(".next_info").fadeIn(200);
 
             feedback_counter = 0;
 
