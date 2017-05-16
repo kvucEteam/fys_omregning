@@ -72,6 +72,47 @@ input[type=checkbox] {
 
 .next_info{
     margin-top: 20px;
-    color: #777;
+    color: #777;0000
     width: 50%;
+}
+
+
+/****************************************************************
+                        Tilføjet af THAN
+****************************************************************/
+
+
+
+.attemptsAndcorrectAnswers{
+    border: 1px solid #666;
+    color: #666;
+    padding: 7px 10px 5px 10px;
+    border-radius: 5px;
+    position: relative;
+    top: 3px;
+}
+
+.attemptsAndcorrectAnswers .glyphicon{
+    margin-right: 5px;
+    font-size: 1.5em;
+    top: 4px;
+}
+
+.attemptsAndcorrectAnswers_subDisplay:nth-child(2){
+    margin-right: 20px;
+}
+
+
+.spacer {
+    margin-top: 13px;
+}
+
+.marginTopAjust{
+    margin-top: 12px;
+}
+
+.widthFixed {
+    min-width: 215px;
+    display: inline-block;
+    padding-right: 0px;
 }

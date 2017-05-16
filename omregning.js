@@ -1,12 +1,14 @@
 var korrektsvar;
 var feedback_Array = [];
 var feedback_counter = 0;
+var tjek_svar_count = 0;
+var korrekt_svar_count = 0;
 
 var storrelse_Array = [];
 
 var korrektfeed = ["Rigtigt svaret", "Savret er korrekt", "Flot, svaret er rigtigt", "Du har svaret rigtigt", "Det er det rigtige svar", "Helt rigtigt"]
 
-var score = 0; 
+
 
 $(document).ready(function() {
 
@@ -40,8 +42,6 @@ $(document).ready(function() {
         var name = $(this).val();
         var check = $(this).prop('checked');
         console.log("Change: " + name + " to " + check);
-
-
         poseQuestion();
     });
 
@@ -55,8 +55,7 @@ $(document).ready(function() {
 
     poseQuestion();
 
-      microhint($(".inputfield"), "Skriv de omregnede værdier ind i feltet her.");
-   
+    $('.scorecontainer').html(displayKorrekteSvarOgAntalForsoeg(0,0));  // Initialiser counter "KorrekteSvarOgAntalForsoeg" med værdierne 0 og 0.
 
 
 });
@@ -201,7 +200,7 @@ function poseQuestion() {
     }*/
 
 
-    //$(".postfix").html("Korrekt afrundet svar er: " + korrektsvar); // + " Decimaler" + );
+    $(".postfix").html("Korrekt afrundet svar er: " + korrektsvar); // + " Decimaler" + );
 
     console.log(jsonSelected.faktor + ", " + jsonSelected.reversible + ", " + randomvalue);
 
@@ -222,24 +221,30 @@ function poseQuestion() {
 
 function tjek_svar() {
 
+
     if ($(".btn_onward").html() == "Tjek svar") {
         var brugersvar = $(".inputfield").val().toString();
         brugersvar = brugersvar.replace(/,/g, ".")
         console.log(brugersvar + ", " + korrektsvar);
+
+        ++tjek_svar_count;
+        $(".attempts").html(tjek_svar_count);
+
         if (brugersvar == korrektsvar) {
-            microhint($(".inputfield"), "<h4><span class='label label-success'>" + korrektfeed[Math.floor(Math.random() * korrektfeed.length)] + "</span></h4>");
+            microhint($(".inputfield"), "<p>" + korrektfeed[Math.floor(Math.random() * korrektfeed.length)] + "</p>", "#2ABB2A");
 
             $(".btn-tjek").html("Næste");
             $(".next_info").fadeIn(200);
 
             feedback_counter = 0;
 
-            score++; 
+            ++korrekt_svar_count;
+            $(".correctAnswers").html(korrekt_svar_count);
 
             //poseQuestion();
 
         } else {
-            microhint($(".inputfield"), "<h4><span class='label label-danger'>Ikke korrekt</span></h4><p>" + feedback_Array[feedback_counter]);
+            microhint($(".inputfield"), "<p>" + feedback_Array[feedback_counter], "#e26060");
             if (feedback_counter < feedback_Array.length - 1) {
                 feedback_counter++;
             } else { feedback_counter = 0 }
@@ -247,7 +252,6 @@ function tjek_svar() {
     } else {
         $(".btn_onward").html("Tjek svar");
         poseQuestion();
-
     }
 }
 
@@ -256,4 +260,22 @@ var countDecimals = function(value) {
     if (Math.floor(value) !== value)
         return value.toString().split(".")[1].length || 0;
     return 0;
+}
+
+
+function displayKorrekteSvarOgAntalForsoeg(attempts, correctAnswers) {
+    var HTML = '';
+    HTML += '<span class="attemptsAndcorrectAnswers hidden-xs hidden-sm">';
+    HTML +=     '<span class="glyphicon glyphicon-pencil"></span> <span class="attemptsAndcorrectAnswers_subDisplay h4">ANTAL FORSØG = <span class="attempts">' + attempts +'</span></span>';
+    HTML +=     '<span class="glyphicon glyphicon-ok"></span> <span class="attemptsAndcorrectAnswers_subDisplay h4">KORREKTE SVAR = <span class="correctAnswers">' + correctAnswers +'</span></span>';
+    HTML += '</span>';
+    HTML += '<div class="hidden-md hidden-lg marginTopAjust"></div>';
+    HTML += '<div class="attemptsAndcorrectAnswers hidden-md hidden-lg widthFixed">';
+    HTML +=     '<span class="glyphicon glyphicon-pencil"></span> <span class="h4">ANTAL FORSØG = <span class="attempts dataDisplay">' + attempts +'</span></span>';
+    HTML += '</div>';
+    HTML += '<div class="hidden-md hidden-lg spacer"></div>';
+    HTML += '<div class="attemptsAndcorrectAnswers hidden-md hidden-lg widthFixed">';
+    HTML +=     '<span class="glyphicon glyphicon-ok"></span> <span class="h4">KORREKTE SVAR = <span class="correctAnswers dataDisplay">' + correctAnswers +'</span></span>';
+    HTML += '</div>';
+    return HTML;
 }
