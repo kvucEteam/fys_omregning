@@ -6,7 +6,7 @@ var storrelse_Array = [];
 
 var korrektfeed = ["Rigtigt svaret", "Savret er korrekt", "Flot, svaret er rigtigt", "Du har svaret rigtigt", "Det er det rigtige svar", "Helt rigtigt"]
 
-
+var score = 0; 
 
 $(document).ready(function() {
 
@@ -40,6 +40,8 @@ $(document).ready(function() {
         var name = $(this).val();
         var check = $(this).prop('checked');
         console.log("Change: " + name + " to " + check);
+
+
         poseQuestion();
     });
 
@@ -52,6 +54,10 @@ $(document).ready(function() {
     //$(".cb_container").slideToggle(0);
 
     poseQuestion();
+
+      microhint($(".inputfield"), "Skriv de omregnede værdier ind i feltet her.");
+   
+
 
 });
 
@@ -195,7 +201,7 @@ function poseQuestion() {
     }*/
 
 
-    $(".postfix").html("Korrekt afrundet svar er: " + korrektsvar); // + " Decimaler" + );
+    //$(".postfix").html("Korrekt afrundet svar er: " + korrektsvar); // + " Decimaler" + );
 
     console.log(jsonSelected.faktor + ", " + jsonSelected.reversible + ", " + randomvalue);
 
@@ -221,17 +227,19 @@ function tjek_svar() {
         brugersvar = brugersvar.replace(/,/g, ".")
         console.log(brugersvar + ", " + korrektsvar);
         if (brugersvar == korrektsvar) {
-            microhint($(".inputfield"), "<p>" + korrektfeed[Math.floor(Math.random() * korrektfeed.length)] + "</p>", "#2ABB2A");
+            microhint($(".inputfield"), "<h4><span class='label label-success'>" + korrektfeed[Math.floor(Math.random() * korrektfeed.length)] + "</span></h4>");
 
             $(".btn-tjek").html("Næste");
             $(".next_info").fadeIn(200);
 
             feedback_counter = 0;
 
+            score++; 
+
             //poseQuestion();
 
         } else {
-            microhint($(".inputfield"), "<p>" + feedback_Array[feedback_counter], "#e26060");
+            microhint($(".inputfield"), "<h4><span class='label label-danger'>Ikke korrekt</span></h4><p>" + feedback_Array[feedback_counter]);
             if (feedback_counter < feedback_Array.length - 1) {
                 feedback_counter++;
             } else { feedback_counter = 0 }
