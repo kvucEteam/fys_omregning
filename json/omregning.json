@@ -32,26 +32,10 @@
 }, {
     "storrelse": "Tid",
     "enheder": {
-        "abb": ["sekunder", "minutter", "timer", "døgn", "år"],
-        "txt": ["sekunder", "minutter", "timer", "døgn", "år"]
+        "abb": ["sekunder", "minutter", "timer", "døgn"],
+        "txt": ["sekunder", "minutter", "timer", "døgn"]
     },
     "kombinationer": [{
-        "kombo": ["år", "døgn"],
-        "faktor": 365,
-        "reversible": false
-    }, {
-        "kombo": ["år", "timer"],
-        "faktor": 8760,
-        "reversible": false
-    }, {
-        "kombo": ["år", "minutter"],
-        "faktor": 525600,
-        "reversible": false
-    }, {
-        "kombo": ["år", "sekunder"],
-        "faktor": 31536000,
-        "reversible": false
-    }, {
         "kombo": ["døgn", "timer"],
         "faktor": 24,
         "reversible": false

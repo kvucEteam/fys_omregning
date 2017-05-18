@@ -6,7 +6,7 @@ var korrekt_svar_count = 0;
 
 var storrelse_Array = [];
 
-var korrektfeed = ["Rigtigt svaret", "Savret er korrekt", "Flot, svaret er rigtigt", "Du har svaret rigtigt", "Det er det rigtige svar", "Helt rigtigt"]
+var korrektfeed = ["Rigtigt svaret", "Svaret er korrekt", "Flot, svaret er rigtigt", "Du har svaret rigtigt", "Det er det rigtige svar", "Helt rigtigt"]
 
 
 
@@ -15,7 +15,7 @@ $(document).ready(function() {
     $(".next_info").fadeOut(0);
 
 
-    $('#instruction').prepend(instruction("Omregn størrelsen fra den ene enhed til den anden. Skriv den rigtige værdi i tekstfeltet."));
+    $('#instruction').prepend(instruction("Omregn størrelsen fra den ene enhed til den anden. Skriv den rigtige værdi i tekstfeltet. <br>Det kan være nødvendigt med en lommeregner."));
     $('#explanation').prepend(explanation("Formålet med denne øvelse er at lære dig at omregne mellem forskellige enheder for den samme fysiske størrelse. Denne type omregninger har man hele tiden brug for i fysikfaget."));
 
     $(".btn-tjek").click(tjek_svar);
@@ -200,7 +200,7 @@ function poseQuestion() {
     }*/
 
 
-    $(".postfix").html("Korrekt afrundet svar er: " + korrektsvar); // + " Decimaler" + );
+    //$(".postfix").html("Korrekt afrundet svar er: " + korrektsvar); // + " Decimaler" + );
 
     console.log(jsonSelected.faktor + ", " + jsonSelected.reversible + ", " + randomvalue);
 
@@ -231,7 +231,7 @@ function tjek_svar() {
         $(".attempts").html(tjek_svar_count);
 
         if (brugersvar == korrektsvar) {
-            microhint($(".inputfield"), "<p>" + korrektfeed[Math.floor(Math.random() * korrektfeed.length)] + "</p>", "#2ABB2A");
+            microhint($(".inputfield"), "<div class='microhint_label_success'>Korrekt</div><p>" + korrektfeed[Math.floor(Math.random() * korrektfeed.length)] + "</p>", "#2ABB2A");
 
             $(".btn-tjek").html("Næste");
             $(".next_info").fadeIn(200);
