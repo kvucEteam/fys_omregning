@@ -42,7 +42,7 @@ $(document).ready(function() {
         var name = $(this).val();
         var check = $(this).prop('checked');
         console.log("Change: " + name + " to " + check);
-        poseQuestion();
+        poseQuestion("cb");
     });
 
     $('.inputfield').on('input', function(e) {
@@ -55,7 +55,7 @@ $(document).ready(function() {
 
     poseQuestion();
 
-    $('.scorecontainer').html(displayKorrekteSvarOgAntalForsoeg(0,0));  // Initialiser counter "KorrekteSvarOgAntalForsoeg" med værdierne 0 og 0.
+    $('.scorecontainer').html(displayKorrekteSvarOgAntalForsoeg(0, 0)); // Initialiser counter "KorrekteSvarOgAntalForsoeg" med værdierne 0 og 0.
 
 
 });
@@ -94,10 +94,10 @@ function update_checkboxes() {
     console.log("updating cb");
 }
 
-function poseQuestion() {
+function poseQuestion(cb) {
 
     $(".next_info").fadeOut(200);
-    
+
     $(".microhint").remove();
     $(".question, .inputcontainer").fadeOut(0);
 
@@ -176,22 +176,23 @@ function poseQuestion() {
     $(".kategori").html(jsonData);
 
     if (reverse === 0) {
-        $(".question").html("Omregn " + randomvalue_komma + " " + string_val_0 + " til " + string_val_1);
+        $(".question").html("Omregn " + randomvalue_komma + " " + string_val_0 + " til " + string_val_1 + ":");
         korrektsvar = (randomvalue * jsonSelected.faktor);
         $(".first_val").html(randomvalue_komma + " " + jsonSelected.kombo[0] + " = ");
         $(".second_val").html(" " + jsonSelected.kombo[1] + "");
         var korrekt_res_komma = korrektsvar.toString();
         korrekt_res_komma = korrekt_res_komma.replace(".", ",");
-        feedback_Array = ["Den ene enhed er " + faktor_komma + " gange større end den anden", faktor_komma + " " + jsonSelected.kombo[1] + " er det samme som 1 " + jsonSelected.kombo[0], "Overvej om resultatet skal være større eller mindre", "Du skal gange med " + faktor_komma, randomvalue_komma + " " + jsonSelected.kombo[0] + " gange med " + faktor_komma + " giver resultatet: <h4>" + korrekt_res_komma + " " + jsonSelected.kombo[1] + "</h4>"];
+        feedback_Array = ["Den ene enhed er " + faktor_komma + " gange større end den anden", faktor_komma + " " + jsonSelected.kombo[1] + " er det samme som 1 " + jsonSelected.kombo[0], "Overvej om resultatet skal være større eller mindre end " + randomvalue_komma, "Du skal gange " + randomvalue_komma + " med " + faktor_komma, randomvalue_komma + " " + jsonSelected.kombo[0] + " gange med " + faktor_komma + " giver resultatet: <h4>" + korrekt_res_komma + " " + jsonSelected.kombo[1] + "</h4>"];
+
 
     } else {
-        $(".question").html("Omregn " + randomvalue_komma + " " + string_val_1 + " til " + string_val_0);
+        $(".question").html("Omregn " + randomvalue_komma + " " + string_val_1 + " til " + string_val_0 + ":");
         korrektsvar = (randomvalue / jsonSelected.faktor);
         $(".first_val").html(randomvalue_komma + " " + jsonSelected.kombo[1] + " = ");
         $(".second_val").html(" " + jsonSelected.kombo[0] + "");
         var korrekt_res_komma = korrektsvar.toString();
         korrekt_res_komma = korrekt_res_komma.replace(".", ",");
-        feedback_Array = ["Den ene enhed er " + faktor_komma + " gange større end den anden", faktor_komma + " " + jsonSelected.kombo[1] + " er det samme som 1 " + jsonSelected.kombo[0], "Overvej om resultatet skal være større eller mindre", "Du skal dividere med " + faktor_komma, randomvalue_komma + " " + jsonSelected.kombo[1] + " divideret med " + faktor_komma + " giver resultatet: <h4>" + korrekt_res_komma + " " + jsonSelected.kombo[0] + "</h4>"];
+        feedback_Array = ["Den ene enhed er " + faktor_komma + " gange større end den anden", faktor_komma + " " + jsonSelected.kombo[1] + " er det samme som 1 " + jsonSelected.kombo[0], "Overvej om resultatet skal være større eller mindre end " + randomvalue_komma, "Du skal dividere " + randomvalue_komma + " med " + faktor_komma, randomvalue_komma + " " + jsonSelected.kombo[1] + " divideret med " + faktor_komma + " giver resultatet: <h4>" + korrekt_res_komma + " " + jsonSelected.kombo[0] + "</h4>"];
     }
 
 
@@ -216,6 +217,16 @@ function poseQuestion() {
         poseQuestion();
     }
     $(".question, .inputcontainer").fadeIn(500);
+
+    if (korrekt_svar_count < 1) {
+        if (cb != "cb") {
+            microhint($(".inputcontainer"), "Omregn til den rigtige værdi og skriv dit bud ind i feltet her");
+        }else{
+            $(".microhint").remove();
+        }
+    }
+
+    console.log("korrekt_svar_count: " + korrekt_svar_count + "bc: " + cb);
 }
 
 
@@ -231,7 +242,7 @@ function tjek_svar() {
         $(".attempts").html(tjek_svar_count);
 
         if (brugersvar == korrektsvar) {
-            microhint($(".inputfield"), "<div class='microhint_label_success'>Korrekt</div><p>" + korrektfeed[Math.floor(Math.random() * korrektfeed.length)] + "</p>", "#2ABB2A");
+            microhint($(".inputfield"), "<div class='microhint_label_success'>Korrekt</div>", "#2ABB2A");
 
             $(".btn-tjek").html("Næste");
             $(".next_info").fadeIn(200);
@@ -266,16 +277,16 @@ var countDecimals = function(value) {
 function displayKorrekteSvarOgAntalForsoeg(attempts, correctAnswers) {
     var HTML = '';
     HTML += '<span class="attemptsAndcorrectAnswers hidden-xs hidden-sm">';
-    HTML +=     '<span class="glyphicon glyphicon-pencil"></span> <span class="attemptsAndcorrectAnswers_subDisplay h4">ANTAL FORSØG = <span class="attempts">' + attempts +'</span></span>';
-    HTML +=     '<span class="glyphicon glyphicon-ok"></span> <span class="attemptsAndcorrectAnswers_subDisplay h4">KORREKTE SVAR = <span class="correctAnswers">' + correctAnswers +'</span></span>';
+    HTML += '<span class="glyphicon glyphicon-pencil"></span> <span class="attemptsAndcorrectAnswers_subDisplay h4">ANTAL FORSØG = <span class="attempts">' + attempts + '</span></span>';
+    HTML += '<span class="glyphicon glyphicon-ok"></span> <span class="attemptsAndcorrectAnswers_subDisplay h4">KORREKTE SVAR = <span class="correctAnswers">' + correctAnswers + '</span></span>';
     HTML += '</span>';
     HTML += '<div class="hidden-md hidden-lg marginTopAjust"></div>';
     HTML += '<div class="attemptsAndcorrectAnswers hidden-md hidden-lg widthFixed">';
-    HTML +=     '<span class="glyphicon glyphicon-pencil"></span> <span class="h4">ANTAL FORSØG = <span class="attempts dataDisplay">' + attempts +'</span></span>';
+    HTML += '<span class="glyphicon glyphicon-pencil"></span> <span class="h4">ANTAL FORSØG = <span class="attempts dataDisplay">' + attempts + '</span></span>';
     HTML += '</div>';
     HTML += '<div class="hidden-md hidden-lg spacer"></div>';
     HTML += '<div class="attemptsAndcorrectAnswers hidden-md hidden-lg widthFixed">';
-    HTML +=     '<span class="glyphicon glyphicon-ok"></span> <span class="h4">KORREKTE SVAR = <span class="correctAnswers dataDisplay">' + correctAnswers +'</span></span>';
+    HTML += '<span class="glyphicon glyphicon-ok"></span> <span class="h4">KORREKTE SVAR = <span class="correctAnswers dataDisplay">' + correctAnswers + '</span></span>';
     HTML += '</div>';
     return HTML;
 }
