@@ -12,6 +12,7 @@ var korrektfeed = ["Rigtigt svaret", "Svaret er korrekt", "Flot, svaret er rigti
 
 $(document).ready(function() {
 
+
     $(".next_info").fadeOut(0);
 
 
@@ -49,6 +50,12 @@ $(document).ready(function() {
         $(".microhint").remove()
     });
 
+    $(".btn_select").click(function() {
+        $(".cb_container").slideToggle();
+    });
+
+    $(".cb_container").slideToggle(0);
+
 
     //$(".cb_container").slideToggle();
     //$(".cb_container").slideToggle(0);
@@ -56,14 +63,17 @@ $(document).ready(function() {
     poseQuestion();
 
     $('.scorecontainer').html(displayKorrekteSvarOgAntalForsoeg(0, 0)); // Initialiser counter "KorrekteSvarOgAntalForsoeg" med værdierne 0 og 0.
-
+   
 
 });
+
+
+
 
 function build_select_container() {
     var HTML = "";
     //var HTML = "<div class='toggle_btn'><span class='toggleglyph glyphicon glyphicon-chevron-down'></span><span class='valg_txt'>Klik for at vælge hvilke fysiske størrelser du vil træne</span></div>";
-    HTML += "<div class='cb_container'>";
+    HTML += "<div class='btn btn-info btn-sm btn_select'>Vælg størrelser til eller fra <span class ='glyphicon glyphicon-chevron-down'></span></div><div class='cb_container'>";
     for (var i = 0; i < jsonData.length; i++) {
 
         HTML += " <label class='input_p'><input class='checkboxes_str' checked type='checkbox' name='storrelse' value=" + jsonData[i].storrelse + "><span class='checkbox_txt'>" + jsonData[i].storrelse + "</span></label>";
@@ -198,6 +208,7 @@ function poseQuestion(cb) {
 
     /*if (faktor == 1) {
 
+
     }*/
 
 
@@ -220,9 +231,10 @@ function poseQuestion(cb) {
 
     if (korrekt_svar_count < 1) {
         if (cb != "cb") {
-            microhint($(".inputcontainer"), "Omregn til den rigtige værdi og skriv dit bud ind i feltet her");
-        }else{
+            microhint($(".inputfield"), "Omregn til den rigtige værdi og skriv dit bud ind i feltet her");
+        } else {
             $(".microhint").remove();
+
         }
     }
 
@@ -242,7 +254,13 @@ function tjek_svar() {
         $(".attempts").html(tjek_svar_count);
 
         if (brugersvar == korrektsvar) {
-            microhint($(".inputfield"), "<div class='microhint_label_success'>Korrekt</div>", "#2ABB2A");
+
+            if (korrekt_svar_count > 2) {
+                microhint($(".inputfield"), "<div class='microhint_label_success'>Korrekt</div>", "#2ABB2A");
+
+            } else {
+                microhint($(".inputfield"), "<div class='microhint_label_success'>Korrekt</div><p> Klik på 'Næste' genererer et nyt spørgsmål, så du kan træne så længe du har brug for. <br/> <b>Tip:</b> Du kan også trykke ENTER for at gå til næste opgave.</p>", "#2ABB2A");
+            }
 
             $(".btn-tjek").html("Næste");
             $(".next_info").fadeIn(200);
@@ -255,7 +273,7 @@ function tjek_svar() {
             //poseQuestion();
 
         } else {
-            microhint($(".inputfield"), "<p>" + feedback_Array[feedback_counter], "#e26060");
+            microhint($(".inputfield"), "<div class='microhint_label_danger'>Forkert</div><p>" + feedback_Array[feedback_counter], "#e26060");
             if (feedback_counter < feedback_Array.length - 1) {
                 feedback_counter++;
             } else { feedback_counter = 0 }
